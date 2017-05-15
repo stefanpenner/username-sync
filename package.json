@@ -5,8 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:stefanpenner/username-sync",
   "scripts": {
-    "test": "mocha test",
-    "test:debug": "mocha debug test"
+    "test": "mocha test.js",
+    "test:debug": "mocha debug test.js"
   },
   "files": [
     "index.js"
