@@ -35,19 +35,28 @@ describe('env', function() {
 });
 
 describe('os', function() {
+  var os = require('os');
+
   it('has the same value as the os module does', function() {
-    expect(username.os()).to.eql(require('os').userInfo().username);
+    var userInfo = require('os').userInfo;
+    var expected;
+    if (typeof userInfo === 'function') {
+      // node >= 6
+      expected = userInfo().username;
+    }
+
+    expect(username.os()).to.eql(expected);
   });
 });
 
 describe('execSync', function() {
-  it('works', function() {
-    console.log(username.execSync());
+  it('seems ok', function() {
+    expect(username.execSync()).to.match(/^\w+$/);
   });
 });
 
 describe('default', function() {
-  it('works', function() {
-    console.log(username());
+  it('seems ok', function() {
+    expect(username()).to.match(/^\w+$/);
   });
 });
