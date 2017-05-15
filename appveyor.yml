@@ -13,8 +13,6 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version
   - appveyor-retry npm i -g npm@^3
-  - appveyor-retry yarn
-  - appveyor-retry yarn add mocha-appveyor-reporter # must be installed locally.
 
 cache:
   - '%LOCALAPPDATA%\Yarn'
@@ -23,7 +21,7 @@ cache:
 test_script:
   # Output useful info for debugging.
   - git rev-parse HEAD
-  - cmd: yarn run test
+  - cmd: npm run test
 
 # Don't actually build.
 build: off
