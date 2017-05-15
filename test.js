@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var username = require('.');
+var username = require('./');
 
 describe('env', function() {
   var originalEnv = process.env;
