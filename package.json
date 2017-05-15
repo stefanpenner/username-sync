@@ -1,6 +1,6 @@
 {
   "name": "username-sync",
-  "version": "1.0.0",
+  "version": "",
   "description": "username but only sync and for node 0.12",
   "main": "index.js",
   "repository": "git@github.com:stefanpenner/username-sync",
