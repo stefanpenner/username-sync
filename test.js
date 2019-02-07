@@ -55,7 +55,7 @@ describe('osUserInfoNotFound', function() {
   var os = require('os');
 
   it('handles ENOENT exceptions', function() {
-    var descriptor = Object.getOwnPropertyDescriptor(os, 'userInfo');
+    var old = os.userInfo;
     try {
       os.userInfo = function() {
 	var error = new Error();
@@ -65,7 +65,7 @@ describe('osUserInfoNotFound', function() {
 
       expect(username.os()).to.eql(undefined);
     } finally {
-      Object.defineProperty(os, 'userInfo', descriptor);
+      os.userInfo = old;
     }
   });
 });

@@ -2,7 +2,6 @@
 
 var os = require('os');
 var execSync = require('child_process').execSync;
-var debug = require('debug')('username-sync');
 
 module.exports = function() {
   return module.exports.os() || module.exports.env() || module.exports.execSync();
@@ -52,7 +51,6 @@ module.exports.execSync = function() {
 function handleUserInfoError(e) {
   if (e !== null && typeof e === 'object' && e.code === 'ENOENT') {
     // if this is run inside a container such as docker, it will fail to get userinfo()
-    debug('UserInfo does not exist', e);
   } else {
    throw (e);
   }
