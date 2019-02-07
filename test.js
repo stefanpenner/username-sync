@@ -1,3 +1,5 @@
+'use strict';
+
 var expect = require('chai').expect;
 var username = require('./');
 
@@ -46,6 +48,25 @@ describe('os', function() {
     }
 
     expect(username.os()).to.eql(expected);
+  });
+});
+
+describe('osUserInfoNotFound', function() {
+  var os = require('os');
+
+  it('handles ENOENT exceptions', function() {
+    var descriptor = Object.getOwnPropertyDescriptor(os, 'userInfo');
+    try {
+      os.userInfo = function() {
+	var error = new Error();
+	error.code = 'ENOENT';
+	throw error;
+      };
+
+      expect(username.os()).to.eql(undefined);
+    } finally {
+      Object.defineProperty(os, 'userInfo', descriptor);
+    }
   });
 });
 
