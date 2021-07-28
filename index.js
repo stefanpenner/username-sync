@@ -49,7 +49,7 @@ module.exports.execSync = function() {
 };
 
 function handleUserInfoError(e) {
-  if (e !== null && typeof e === 'object' && e.code === 'ENOENT') {
+  if (e !== null && typeof e === 'object' && (e.code === 'ENOENT' || e.code === 'ENOMEM')) {
     // if this is run inside a container such as docker, it will fail to get userinfo()
   } else {
    throw (e);
