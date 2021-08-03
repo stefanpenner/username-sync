@@ -4,7 +4,8 @@ var os = require('os');
 var execSync = require('child_process').execSync;
 
 module.exports = function() {
-  return module.exports.os() || module.exports.env() || module.exports.execSync();
+  // sandbox environments may not always allow access to os.userInfo(), so prioritize env vars
+  return module.exports.env() || module.exports.os() || module.exports.execSync();
 };
 
 module.exports.env = function() {
